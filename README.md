@@ -5,4 +5,4 @@ Each pattern will be presented in a branch
 - Layered Architecture
 - Hexagonal Architecture
 - Onion Architecture
-- Clean Architecture
+- Clean Architecture <-- main branch
