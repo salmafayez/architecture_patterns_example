@@ -1,10 +1,10 @@
 package com.charity_hub.infrastructure.mappers;
 
-import com.charity_hub.domain.model.account.Account;
-import com.charity_hub.domain.model.device.Device;
-import com.charity_hub.shared.api.auth.AccessTokenPayload;
-import com.charity_hub.shared.api.auth.JWTPayload;
-import com.charity_hub.shared.api.auth.RefreshTokenPayload;
+import com.charity_hub.domain.models.account.Account;
+import com.charity_hub.domain.models.device.Device;
+import com.charity_hub.api.common.AccessTokenPayload;
+import com.charity_hub.api.authconfig.JWTPayload;
+import com.charity_hub.api.common.RefreshTokenPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

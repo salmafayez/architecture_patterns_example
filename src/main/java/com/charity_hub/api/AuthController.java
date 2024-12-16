@@ -1,8 +1,8 @@
 package com.charity_hub.api;
 
+import com.charity_hub.api.common.DeferredResults;
 import com.charity_hub.application.Authenticate;
 import com.charity_hub.application.AuthenticateHandler;
-import com.charity_hub.shared.api.DeferredResults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

@@ -1,12 +1,9 @@
 package com.charity_hub.infrastructure.repositories;
 
-import com.charity_hub.infrastructure.dtos.AccountEventDto;
 import com.charity_hub.domain.contracts.IAccountRepo;
-import com.charity_hub.domain.events.AccountEvent;
-import com.charity_hub.domain.model.account.Account;
+import com.charity_hub.domain.models.account.Account;
 import com.charity_hub.infrastructure.db.AccountEntity;
 import com.charity_hub.infrastructure.db.RevokedAccountEntity;
-import com.charity_hub.shared.domain.IEventBus;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.ReplaceOptions;
@@ -25,17 +22,14 @@ public class AccountRepo implements IAccountRepo {
 
     private final MongoCollection<AccountEntity> collection;
     private final List<String> admins;
-    private final IEventBus eventBus;
 
     public AccountRepo(
             @Value("${accounts.admins}") List<String> admins,
-            MongoDatabase mongoDatabase,
-            IEventBus eventBus
+            MongoDatabase mongoDatabase
     ) {
         this.admins = admins;
         this.collection = mongoDatabase.getCollection(ACCOUNTS_COLLECTION, AccountEntity.class);
         mongoDatabase.getCollection(REVOKED_ACCOUNT_COLLECTION, RevokedAccountEntity.class);
-        this.eventBus = eventBus;
     }
 
     @Override
@@ -56,9 +50,6 @@ public class AccountRepo implements IAccountRepo {
                     entity,
                     new ReplaceOptions().upsert(true)
             );
-            account.occurredEvents().stream()
-                    .map(event -> AccountEventDto.from((AccountEvent) event))
-                    .forEach(eventBus::push);
             return null;
         });
     }

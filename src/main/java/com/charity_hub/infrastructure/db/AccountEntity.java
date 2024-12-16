@@ -1,7 +1,7 @@
 package com.charity_hub.infrastructure.db;
 
-import com.charity_hub.domain.model.account.*;
-import com.charity_hub.shared.domain.model.Permission;
+import com.charity_hub.domain.models.account.*;
+import com.charity_hub.domain.models.account.Permission;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;

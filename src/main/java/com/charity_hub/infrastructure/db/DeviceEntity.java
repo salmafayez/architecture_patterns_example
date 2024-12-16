@@ -1,7 +1,7 @@
 package com.charity_hub.infrastructure.db;
 
 
-import com.charity_hub.domain.model.device.Device;
+import com.charity_hub.domain.models.device.Device;
 
 public record DeviceEntity(String deviceId,
                            String deviceType,

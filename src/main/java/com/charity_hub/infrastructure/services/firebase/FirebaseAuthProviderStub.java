@@ -1,7 +1,7 @@
 package com.charity_hub.infrastructure.services.firebase;
 
 import com.charity_hub.domain.contracts.IAuthProvider;
-import com.charity_hub.domain.model.account.MobileNumber;
+import com.charity_hub.domain.models.account.MobileNumber;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;

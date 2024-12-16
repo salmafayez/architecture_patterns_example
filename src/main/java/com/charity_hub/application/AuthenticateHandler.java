@@ -4,10 +4,9 @@ import com.charity_hub.domain.contracts.IAccountRepo;
 import com.charity_hub.domain.contracts.IAuthProvider;
 import com.charity_hub.domain.contracts.IInvitationRepo;
 import com.charity_hub.domain.contracts.IJWTGenerator;
-import com.charity_hub.domain.model.account.Tokens;
-import com.charity_hub.domain.model.account.Account;
-import com.charity_hub.shared.abstractions.CommandHandler;
-import com.charity_hub.shared.exceptions.AppException;
+import com.charity_hub.domain.models.account.Tokens;
+import com.charity_hub.domain.models.account.Account;
+import com.charity_hub.domain.exceptions.AppException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.CompletableFuture;
 
 @Service
-public class AuthenticateHandler extends CommandHandler<Authenticate, AuthenticateResponse> {
+public class AuthenticateHandler {
     private final IAccountRepo accountRepo;
     private final IInvitationRepo invitationRepo;
     private final IAuthProvider authProvider;
@@ -35,7 +34,6 @@ public class AuthenticateHandler extends CommandHandler<Authenticate, Authentica
         this.jwtGenerator = jwtGenerator;
     }
 
-    @Override
     public CompletableFuture<AuthenticateResponse> handle(Authenticate command) {
         return CompletableFuture.supplyAsync(() -> {
             logger.info("Handling authentication for idToken: {}", command.idToken());

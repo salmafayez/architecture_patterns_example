@@ -1,7 +1,7 @@
 package com.charity_hub.infrastructure.services.firebase;
 
 import com.charity_hub.domain.contracts.IAuthProvider;
-import com.charity_hub.shared.exceptions.AppException;
+import com.charity_hub.domain.exceptions.AppException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
