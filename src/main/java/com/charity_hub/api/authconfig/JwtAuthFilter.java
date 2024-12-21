@@ -22,8 +22,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JwtAuthFilter extends OncePerRequestFilter {
+
     private final JwtVerifier jwtVerifier;
+
     private final ObjectMapper mapper;
+
     private final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     public JwtAuthFilter(JwtVerifier jwtVerifier, ObjectMapper mapper) {
@@ -48,6 +51,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             var claims = jwtVerifier.verify(token);
             log.info("Token verified successfully");
 
+            //
             var payload = AccessTokenPayload.fromPayload(claims);
             var authentication = new UsernamePasswordAuthenticationToken(
                 payload,

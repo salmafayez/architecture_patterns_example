@@ -1,6 +1,7 @@
 package com.charity_hub.infrastructure.services.firebase;
 
 import com.charity_hub.domain.contracts.IAuthProvider;
+import com.charity_hub.domain.contracts.ILogger;
 import com.charity_hub.domain.exceptions.AppException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -15,10 +16,12 @@ import java.util.concurrent.CompletableFuture;
 public class FirebaseAuthProvider implements IAuthProvider {
 
     private final FirebaseAuth firebaseAuth;
-    protected final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
-    public FirebaseAuthProvider(FirebaseAuth firebaseAuth) {
+    protected final ILogger log;
+
+    public FirebaseAuthProvider(FirebaseAuth firebaseAuth, ILogger log) {
         this.firebaseAuth = firebaseAuth;
+        this.log = log;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class FirebaseAuthProvider implements IAuthProvider {
                 if (userRecord.getPhoneNumber() != null) {
                     return userRecord.getPhoneNumber().replace("+", "");
                 } else {
-                    log.error("Failed to verify mobile number");
+                    log.errorLog("Failed to verify mobile number");
                     throw new AppException.UnAuthorized();
                 }
             } catch (FirebaseAuthException e) {
@@ -44,7 +47,7 @@ public class FirebaseAuthProvider implements IAuthProvider {
             try {
                 return firebaseAuth.verifyIdToken(idToken);
             } catch (Exception authError) {
-                log.error("Failed to verify Id token: {}", idToken, authError);
+                log.errorLog("Failed to verify Id token: {}" + idToken + authError);
                 throw new AppException.UnAuthorized();
             }
         });

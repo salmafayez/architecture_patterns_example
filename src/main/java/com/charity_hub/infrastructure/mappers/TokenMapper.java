@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class TokenMapper {
 
+    //TODO why we don't return the concrete class
     public static JWTPayload toAccessToken(Account account, Device device, Date expireAt) {
         Logger.getAnonymousLogger().info("jwt id " + UUID.randomUUID());
 
@@ -37,6 +38,7 @@ public class TokenMapper {
         );
     }
 
+    //TODO why we don't return the concrete class
     public static JWTPayload toRefreshToken(Account account, Device device, Date expireAt) {
         return new RefreshTokenPayload(
                 device.getDeviceType().value(),           // audience

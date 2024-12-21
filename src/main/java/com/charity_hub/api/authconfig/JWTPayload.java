@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.util.Date;
 import java.util.Map;
 
+//TODO this class shouldn't be inside the domain layer
 @Getter
 public abstract class JWTPayload {
     private final String issuer;

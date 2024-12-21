@@ -59,6 +59,7 @@ public class Account {
         return account;
     }
 
+    //TODO should the domain models use the contracts or it can be the domain service or the use case responsibility
     public Tokens authenticate(IJWTGenerator jwtGenerator, String deviceId, String aDeviceType) {
         var usedDevice = usedDevice(deviceId, aDeviceType);
 
@@ -69,7 +70,7 @@ public class Account {
         return new Tokens(refreshToken, accessToken);
     }
 
-    private Device usedDevice(String deviceId, String aDeviceType) {
+    public Device usedDevice(String deviceId, String aDeviceType) {
         Device usedDevice = getDevice(deviceId);
         if (usedDevice == null) {
             usedDevice = Device.of(deviceId, aDeviceType);
